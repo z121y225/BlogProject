@@ -1,0 +1,27 @@
+SET FOREIGN_KEY_CHECKS=0;
+DELIMITER $
+CREATE PROCEDURE proc_initData()
+BEGIN
+DECLARE n INT DEFAULT 1;
+WHILE n<=100 DO
+
+INSERT INTO room (NAME,location,DESCRIPTION,NUMBER,STATUS) VALUES (CONCAT("会议室",n),CONCAT("教室",n),CONCAT("这是会议室",n),30+ROUND((RAND()*100)),CASE WHEN n%2=0 THEN 1 ELSE 0 END);
+
+INSERT INTO meeting (`id`,`roomId`,`useDate`,`useTime`,`theme`,`abstracts`,`applicantId`,`applicantDate`,`approvalId`,`approvalDate`,`status`,`summaryUrl`,`checkStatus`)
+VALUES (n,ROUND((RAND()*99)+1),
+'2021-03-11','\0','‘1+X’职业技能等级证书试点工作说明会','为了更好的贯彻《国家职业教育改革实施方案》精神，落实《关于在院校实施“学历证书+若干职业技能等级证书”制度试点方案》要求，促进有关院校对区块链系统应用与设计职业技能等级证书的深入了解。',
+ROUND((RAND() * 2)+1),'2021-03-09 17:03:23',2,'2021-03-09 17:04:15',ROUND((RAND() * 4)+1),'statics\\uploadfiles12\\176\\8bf34c7f-446c-4752-94e1-2cd6d5130b93.docx',ROUND((RAND() * 3)+1));
+
+
+SET n = n+1;
+END WHILE;
+END $
+
+DELIMITER ;
+
+CALL proc_initData();
+SET FOREIGN_KEY_CHECKS=1;
+INSERT INTO attendee (userId,meetingId,readStatus,checkStatus) VALUES (2,10,1,0);
+INSERT INTO attendee (userId,meetingId,readStatus,checkStatus) VALUES (2,13,0,1);
+INSERT INTO attendee (userId,meetingId,readStatus,checkStatus) VALUES (2,11,0,0);
+INSERT INTO attendee (userId,meetingId,readStatus,checkStatus) VALUES (2,12,1,1);

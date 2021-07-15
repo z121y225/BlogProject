@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="static/CSS/semantic.css" type="text/css">
+  <link rel="stylesheet" href="static/CSS/myStyle.css" type="text/css">
+  <script src="static/JS/jquery-3.1.1.min.js" type="application/javascript"></script>
+  <script src="static/JS/semantic.js" type="application/javascript"></script>
+  <script src="static/JS/vue.js" type="application/javascript"></script>
+</head>
+<body>
+<div id="app" class="ui grid">
+  <div class="two wide column"></div>
+  <div class="twelve wide column">
+    <div class="row navBar">
+      <div class="ui segment shadow">
+        <div class="ui secondary menu">
+          <a class="item" href="index.html">
+            主页
+          </a>
+          <a class="item" href="types.html">
+            分类
+          </a>
+          <a class="item" href="about.html">
+            关于我
+          </a>
+          <div class="right item">
+            <div class="ui icon input">
+              <input type="text" placeholder="搜索...">
+              <i class="search icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row content">
+      <div class="ui three column grid" style="height: 100%!important;">
+        <div class="row">
+          <div class="column" align="center">
+            <div class="ui fluid card shadow">
+              <div class="image">
+                <img src="../images/avatar/large/daniel.jpg">
+              </div>
+              <div class="content">
+                <a class="header">Daniel Louise</a>
+              </div>
+            </div>
+          </div>
+          <div class="column" align="center">
+            <div class="ui fluid card shadow">
+              <div class="image">
+                <img src="../images/avatar/large/daniel.jpg">
+              </div>
+              <div class="content">
+                <a class="header">Daniel Louise</a>
+              </div>
+            </div>
+          </div>
+          <div class="column" align="center">
+            <div class="ui fluid card shadow">
+              <div class="image">
+                <img src="../images/avatar/large/daniel.jpg">
+              </div>
+              <div class="content">
+                <a class="header">Daniel Louise</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="column" align="center">
+            <div class="ui fluid card shadow">
+              <div class="image">
+                <img src="../images/avatar/large/daniel.jpg">
+              </div>
+              <div class="content">
+                <a class="header">Daniel Louise</a>
+              </div>
+            </div>
+          </div>
+          <div class="column" align="center">
+            <div class="ui fluid card shadow">
+              <div class="image">
+                <img src="../images/avatar/large/daniel.jpg">
+              </div>
+              <div class="content">
+                <a class="header">Daniel Louise</a>
+              </div>
+            </div>
+          </div>
+          <div class="column" align="center">
+            <div class="ui fluid card shadow">
+              <div class="image">
+                <img src="../images/avatar/large/daniel.jpg">
+              </div>
+              <div class="content">
+                <a class="header">Daniel Louise</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row shadow" style="background: #9c6f04;height: 50px!important;border-radius: 20px!important;">
+
+    </div>
+  </div>
+  <div class="two wide column"></div>
+</div>
+</body>
+<script>
+  var vm=new Vue({
+    el:'#app',
+    data:{
+      hot:[
+        "标题1",
+        "标题2",
+        "标题3",
+        "标题4",
+        "标题5",
+      ],
+      blogs:[
+        {
+          img:'',
+          title:'这是标题',
+          content:'这是摘要！'
+        },
+        {
+          img:'',
+          title:'这是标题',
+          content:'这是摘要！'
+        },
+        {
+          img:'',
+          title:'这是标题',
+          content:'这是摘要！'
+        },
+        {
+          img:'',
+          title:'这是标题',
+          content:'这是摘要！'
+        },
+        {
+          img:'',
+          title:'这是标题',
+          content:'这是摘要！'
+        },
+      ]
+
+    }
+
+  })
+</script>
+</html>

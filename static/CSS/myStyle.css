@@ -1,0 +1,22 @@
+#app{
+    height: 1080px!important;
+}
+body{
+    background-size: revert!important;
+    background: url("../image/tileable_wood_texture.png");
+}
+.navBar{
+    margin: 20px!important;
+    padding: 15px!important;
+    border-radius: 18px!important;
+    margin-bottom: 0!important;
+}
+
+.content{
+    padding: 33px!important;
+}
+
+.shadow{
+    box-shadow:2px 2px 10px #1B1C1D!important;
+}
+

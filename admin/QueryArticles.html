@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+  <link rel="stylesheet" type="text/css" href="../static/CSS/backStyle.css" th:href="@{/CSS/myStyle.css}">
+  <link rel="stylesheet" type="text/css" href="../static/libs/semantic/semantic.min.css" th:href="@{/libs/semantic/semantic.min.css}">
+  <script
+          src="../static/libs/jquery-3.1.1.min.js"
+          th:src="@{/libs/jquery-3.1.1.min.js}"
+          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+          crossorigin="anonymous"></script>
+  <script src="../static/libs/semantic/semantic.min.js" th:src="@{/libs/semantic/semantic.min.js}"></script>
+  <script src="../static/JS/myJs.js" th:src="@{/JS/myJs.js}"></script>
+
+</head>
+<body>
+<div class="ui grid fullscreen main">
+  <!--左边导航栏-->
+  <div class="three wide column leftPM">
+    <div class="ui inverted vertical menu leftNav">
+      <div class="item" style="text-align: center;">
+        <p style="color: orange;" th:text="${session.user.name}+',欢迎登录！'">管理员,欢迎登录！</p>
+      </div>
+      <div class="item">
+        <div class="ui styled fluid accordion">
+          <div class="content active">
+            <p></p>
+            <a href="EditArticle.html" th:href="@{/EditArticle}">
+              <button class="fluid ui button">写文章</button>
+            </a>
+            <p></p>
+            <a href="QueryArticles.html" th:href="@{/QueryArticles}">
+              <button class="fluid ui button">文章管理</button>
+            </a>
+            <p></p>
+            <a href="QueryTypes.html" th:href="@{/QueryTypes}">
+              <button class="fluid ui button">分类管理</button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <a th:href="@{logout}">
+          <div class="ui fluid inverted red button">注销</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!--主体-->
+  <div class="thirteen wide column">
+    <div class="ui grid rightContent">
+      <div class="row">
+        <form id="dataForm" method="get" action="QueryRooms">
+          <div>
+            <div class="ui labeled input">
+              <div class="ui label">
+                会议室名称
+              </div>
+              <input id="name" name="name" th:value="${name}" type="text">
+            </div>
+
+            <button class="ui button fontBig" onclick="form.submit();">点击查询</button>
+            <input id="pageNumInput" name="pageNum" value="1" hidden>
+          </div>
+        </form>
+      </div>
+      <div class="row">
+        <table id="MeetingRoomInfo" class="ui inverted fixed table">
+          <thead>
+          <tr>
+            <th>文章名</th>
+            <th>分类</th>
+            <th>浏览量</th>
+            <th>操作</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="room:${pageInfo.list}">
+            <td th:text="${room.name}">JAVA入门</td>
+            <td th:text="${room.location}">JAVA</td>
+            <td th:text="${room.number}">100</td>
+            <td>
+              <a href="">
+                <button class="ui inverted green button">查看</button>
+              </a>
+              <a th:href="@{'/toEdit?id='+${room.id}}">
+                <button class="ui inverted yellow button">编辑</button>
+              </a>
+              <a th:href="@{'/deleteRoom?id='+${room.id}}">
+                <button class="ui inverted red button">删除</button>
+              </a>
+            </td>
+          </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>
+                <button class="ui inverted teal button" th:onclick="var pn = [[${pageInfo.hasPreviousPage}]]?[[${pageInfo.prePage}]]:1;changePageNum(pn)">上一页</button>
+              </th>
+              <th></th>
+              <th>
+                <div class="fontBig">
+                  当前第<span th:text="${pageInfo.pageNum}"></span>页,
+                  共<span th:text="${pageInfo.pages}"></span>页
+                </div>
+              </th>
+              <th>
+                <button class="ui inverted teal button" th:onclick="var pn = [[${pageInfo.hasNextPage}]]?[[${pageInfo.nextPage}]]:[[${pageInfo.pageNum}]];changePageNum(pn)">下一页</button>
+              </th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="row">
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

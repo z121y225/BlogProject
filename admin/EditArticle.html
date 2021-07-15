@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+
+  <link rel="stylesheet" type="text/css" href="../static/CSS/backStyle.css" th:href="@{/CSS/myStyle.css}">
+  <link rel="stylesheet" type="text/css" href="../static/libs/semantic/semantic.min.css" th:href="@{/libs/semantic/semantic.min.css}">
+  <script
+          src="../static/libs/jquery-3.1.1.min.js"
+          th:src="@{/libs/jquery-3.1.1.min.js}"
+          integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+          crossorigin="anonymous"></script>
+  <script src="../static/libs/semantic/semantic.min.js" th:src="@{/libs/semantic/semantic.min.js}"></script>
+  <script src="../static/JS/myJs.js" th:src="@{/JS/myJs.js}"></script>
+  <script type="text/javascript">
+    function checkBoxValue(e){
+      document.getElementById("status").value=e.checked?'可用':'不可用';
+    }
+  </script>
+</head>
+<body>
+<div class="ui grid fullscreen main">
+  <!--左边导航栏-->
+  <div class="three wide column leftPM">
+    <div class="ui inverted vertical menu leftNav">
+      <div class="item" style="text-align: center;">
+        <p style="color: orange;" th:text="${session.user.name}+',欢迎登录！'">管理员,欢迎登录！</p>
+      </div>
+      <div class="item">
+        <div class="ui styled fluid accordion">
+          <div class="content active">
+            <p></p>
+            <a href="EditArticle.html" th:href="@{/EditArticle}">
+              <button class="fluid ui button">写文章</button>
+            </a>
+            <p></p>
+            <a href="QueryArticles.html" th:href="@{/QueryArticles}">
+              <button class="fluid ui button">文章管理</button>
+            </a>
+            <p></p>
+            <a href="QueryTypes.html" th:href="@{/QueryTypes}">
+              <button class="fluid ui button">分类管理</button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="item">
+        <a th:href="@{logout}">
+          <div class="ui fluid inverted red button">注销</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!--主体-->
+  <div class="thirteen wide column">
+    <div class="ui fluid grid rightContent">
+      <div class="row"></div>
+      <div class="row">
+        <div class="three wide column"></div>
+        <div class="ten wide column">
+          <h1 style="color: red;text-align: center" th:text="${tips}">操作成功！</h1>
+          <form method="post" action="/SaveRoom">
+            <input name="id" th:value="${room.id}" hidden>
+            <input name="isNew" th:value="${isNew}" hidden>
+            <div class="ui fluid labeled input" style="padding: 10px;">
+              <div class="ui label">
+                <p class="fontBig">
+                  文章标题
+                </p>
+              </div>
+              <input type="text" name="name" th:value="${room.name}">
+            </div>
+
+            <div class="ui form">
+              <div class="field">
+                <label>Text</label>
+                <div class="ui top attached label">描述</div>
+                <textarea name="description">[[${room.description}]]</textarea>
+              </div>
+            </div>
+
+            <div class="ui horizontal segments">
+              <div class="ui segment">
+                <div style="float: right">
+                  <button class="ui inverted green button" onclick="form.submit();">发布</button>
+                  <a href="QueryArticles.html" th:href="@{/QueryMeeting}">
+                    <button type="button" class="ui inverted red button">取消</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="three wide column"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
